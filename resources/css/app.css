@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import './../../vendor/filament/filament/resources/css/app.css';
+
+input{
+    min-height: 30px;
+}

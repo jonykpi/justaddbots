@@ -46,17 +46,17 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
 
-        Filament::navigation(function (NavigationBuilder $builder): NavigationBuilder {
-            return $builder
-                ->groups([
-                    NavigationGroup::make('Website')
-                        ->items([
-                            ...PageResource::getNavigationItems(),
-                            ...CategoryResource::getNavigationItems(),
-                            ...HomePageSettings::getNavigationItems(),
-                        ]),
-                ]);
-        });
+//        Filament::navigation(function (NavigationBuilder $builder): NavigationBuilder {
+//            return $builder
+//                ->groups([
+//                    NavigationGroup::make('Website')
+//                        ->items([
+//                            ...PageResource::getNavigationItems(),
+//                            ...CategoryResource::getNavigationItems(),
+//                            ...HomePageSettings::getNavigationItems(),
+//                        ]),
+//                ]);
+//        });
 
         Filament::navigation(function (NavigationBuilder $builder) : NavigationBuilder {
             $folders = Folder::where('parent_folder_id','=',null)->get();
@@ -89,7 +89,7 @@ class AppServiceProvider extends ServiceProvider
 
                 foreach ($sub_folders as $sub_folder){
                     array_push($folder_menus,
-                        NavigationItem::make($sub_folder->name)
+                        NavigationItem::make($sub_folder->name)->group('221')
                         ->icon('heroicon-o-folder')
                          ->badge($sub_folder->contents->count())
                         ->activeIcon('heroicon-s-folder')

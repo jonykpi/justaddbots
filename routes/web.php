@@ -64,3 +64,35 @@ return view('mail.lastEmail',['email'=>json_decode($folder->last_email)]);
 })->name('lastEmail');
 
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('filament-companies.auth_session'),
+    'verified'
+])->group(function () {
+
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('filament-companies.auth_session'),
+    'verified'
+])->group(function () {
+
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('filament-companies.auth_session'),
+    'verified'
+])->group(function () {
+
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('filament-companies.auth_session'),
+    'verified'
+])->group(function () {
+
+});
