@@ -1,0 +1,61 @@
+
+
+.filament-header div:first-child{
+    width: 100%;
+}
+.filament-header div:first-child h1{
+    display: flex !important;
+    justify-content: space-between;
+}
+
+.break-all{
+    word-break: break-all;
+}
+
+.w-20{
+    max-width: 100px;
+}
+.bg-offwhite{
+    background-color: #fafafa;
+}
+.mous{
+    cursor: pointer;
+    display: block;
+    margin-top: 0px;
+    padding: 5px !important;
+}
+.dsd{
+    margin-top: 10px;
+}
+
+#GfGInput,#GfGInput:focus{
+    border: none !important;
+    background: transparent;
+
+    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: none !important;
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    border-color: snow !important;
+    box-shadow: var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
+    min-width: 241px;
+}
+
+.sasqasw3{
+    color: #101827 !important;
+}
+.dsd input{
+    color: #101827 !important;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.filament-modal-content{
+    overflow: scroll;
+}
