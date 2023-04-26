@@ -8,6 +8,8 @@ use Filament\Facades\Filament;
 use Filament\Navigation\NavigationBuilder;
 use Filament\Navigation\NavigationItem;
 use Illuminate\Support\ServiceProvider;
+use Yepsua\Filament\Themes\Facades\FilamentThemes;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,6 +26,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
+
+        FilamentThemes::register(function($path) {
+            // Using Vite:
+            return app(\Illuminate\Foundation\Vite::class)('resources/' . $path);
+            // Using Mix:
+            return app(\Illuminate\Foundation\Mix::class)($path);
+            // Using asset()
+            return asset($path);
+        });
 
 
         Filament::registerStyles([
