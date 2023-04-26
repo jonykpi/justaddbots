@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('file_title')->nullable();
             $table->bigInteger('folder_id')->unsigned();
-            $table->longText('content');
+            $table->longText('content')->nullable();
             $table->string('file_path')->nullable();
             $table->timestamps();
         });

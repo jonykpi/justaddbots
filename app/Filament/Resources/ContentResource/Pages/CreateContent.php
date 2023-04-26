@@ -68,7 +68,7 @@ class CreateContent extends CreateRecord
         try {
 
             $folder = Folder::find($this->data['folder_id']);
-            $this->record->text_data = "default";
+           $this->record->text_data = "default";
 
             $this->record->is_learned = '0';
             $this->record->save();

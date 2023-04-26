@@ -18,6 +18,8 @@ use Illuminate\Support\Str;
 class FolderResource extends Resource
 {
     protected static ?string $model = Folder::class;
+    protected static ?string $slug = 'bot';
+
 
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
@@ -185,7 +187,7 @@ class FolderResource extends Resource
         return [
             'index' => Pages\ListFolders::route('/'),
             'view' => Pages\CustomListFolders::route('/view/{record}'),
-            'viewProject' => Pages\ProjectView::route('/project/view/{record}'),
+            'viewProject' => Pages\ProjectView::route('/setting/{record}'),
             'create' => Pages\CreateFolder::route('/create'),
             'edit' => Pages\EditFolder::route('/{record}/edit'),
             'thumbLogs' => Pages\ThumbLogs::route('/{record}/thumb/logs'),

@@ -106,9 +106,9 @@ class ProjectView extends Page implements HasForms,HasTable
    {
        return [
            Action::make('edit')
-               ->url(fn (Folder $record): string => route('filament.resources.folders.edit', $record)),
+               ->url(fn (Folder $record): string => route('filament.resources.bot.edit', $record)),
             Action::make('view')
-                ->url(fn (Folder $record): string => route('filament.resources.folders.view', $record)),
+                ->url(fn (Folder $record): string => route('filament.resources.bot.view', $record)),
            DeleteAction::make()
        ];
    }
@@ -158,7 +158,7 @@ class ProjectView extends Page implements HasForms,HasTable
 
         Content::create($arra);
 
-        return redirect()->route('filament.resources.folders.view', $this->folder_id);
+        return redirect()->route('filament.resources.bot.view', $this->folder_id);
     }
 
     protected static string $view = 'filament.resources.folder-resource.pages.custom-list-folders';

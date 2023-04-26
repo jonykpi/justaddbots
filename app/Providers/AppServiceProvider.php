@@ -72,10 +72,10 @@ class AppServiceProvider extends ServiceProvider
 
                 $sub_folders = Folder::where('parent_folder_id','=',$folder->id)->get();
 
-                $url = route('filament.resources.folders.view',$folder->id);
+                $url = route('filament.resources.bot.view',$folder->id);
 
                 if (!$folder->parent_folder_id){
-                    $url = route('filament.resources.folders.viewProject',$folder->id);
+                    $url = route('filament.resources.bot.viewProject',$folder->id);
                 }
 
                 array_push($folder_menus,
@@ -83,7 +83,7 @@ class AppServiceProvider extends ServiceProvider
                         ->icon('heroicon-o-cog')
                         ->badge('main_folder')
                         ->activeIcon('heroicon-s-cog')
-                        ->isActiveWhen(fn (): bool => request()->fullUrlIs(url('admin/folders/project/view/'.$folder->id)) || request()->fullUrlIs(url('admin/folders/'.$folder->id."/edit"))|| request()->fullUrlIs(url('admin/folders/'.$folder->id."/thumb/logs")))
+                        ->isActiveWhen(fn (): bool => request()->fullUrlIs(url('company/bot/project/view/'.$folder->id)) || request()->fullUrlIs(url('company/bot/'.$folder->id."/edit"))|| request()->fullUrlIs(url('company/bot/'.$folder->id."/thumb/logs")))
                         ->url($url)
                 );
 
@@ -93,8 +93,8 @@ class AppServiceProvider extends ServiceProvider
                         ->icon('heroicon-o-folder')
                          ->badge($sub_folder->contents->count())
                         ->activeIcon('heroicon-s-folder')
-                        ->isActiveWhen(fn (): bool => request()->fullUrlIs(url('admin/folders/view/'.$sub_folder->id)) || request()->fullUrlIs(url('admin/folders/'.$sub_folder->id."/edit")) || request()->fullUrlIs(url('admin/folders/'.$sub_folder->id."/thumb/logs")))
-                        ->url(route('filament.resources.folders.view',$sub_folder->id)));
+                        ->isActiveWhen(fn (): bool => request()->fullUrlIs(url('company/bot/view/'.$sub_folder->id)) || request()->fullUrlIs(url('company/bot/'.$sub_folder->id."/edit")) || request()->fullUrlIs(url('company/bot/'.$sub_folder->id."/thumb/logs")))
+                        ->url(route('filament.resources.bot.view',$sub_folder->id)));
                 }
 
 

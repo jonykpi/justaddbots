@@ -286,7 +286,7 @@ class CustomListFolders extends Page implements HasForms,HasTable
 
         Content::create($arra);
 
-        return redirect()->route('filament.resources.folders.view',$this->folder_id);
+        return redirect()->route('filament.resources.bot.view',$this->folder_id);
     }
 
     protected static string $view = 'filament.resources.folder-resource.pages.custom-list-folders';

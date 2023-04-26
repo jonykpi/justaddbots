@@ -103,9 +103,9 @@ _**Disclaimer:**  This chatbot, built on top of the latest AI models, was develo
     protected function getRedirectUrl(): string
     {
         if (!empty($this->record->parent_folder_id)){
-            return route('filament.resources.folders.view',$this->record->id);
+            return route('filament.resources.bot.view',$this->record->id);
         }
-        return route('filament.resources.folders.viewProject',$this->record->id);
+        return route('filament.resources.bot.viewProject',$this->record->id);
 
     }
 
