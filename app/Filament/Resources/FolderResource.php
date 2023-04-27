@@ -43,6 +43,7 @@ class FolderResource extends Resource
                         Forms\Components\Grid::make()
                             ->schema([
                          Forms\Components\Toggle::make('show_source_in_response')->default(0)->hiddenOn('create'),
+                                Forms\Components\Toggle::make('is_thumbs_down')->default(0)->hiddenOn('create'),
                         Forms\Components\TextInput::make('bot_top_default_title')->hiddenOn('create'),
                         Forms\Components\TextInput::make('bot_placeholder_title')->hiddenOn('create'),
                         Forms\Components\TextInput::make('bot_text_font_size')->numeric()->suffix('px')->hiddenOn('create'),
@@ -50,9 +51,11 @@ class FolderResource extends Resource
                         Forms\Components\ColorPicker::make('bot_text_font_color')->hiddenOn('create'),
                         Forms\Components\ColorPicker::make('page_color')->hiddenOn('create'),
                         Forms\Components\ColorPicker::make('bot_background_color')->hiddenOn('create'),
+
                                ]),
                         Forms\Components\Grid::make()
                             ->schema([
+
                                 Forms\Components\FileUpload::make('bot_icon')->label('Bot icon (96x96) | Less then 100Kb')->enableDownload()->acceptedFileTypes(['image/*'])->hiddenOn('create'),
                                 Forms\Components\FileUpload::make('user_icon')->label('User icon (96x96) | Less then 100Kb')->enableDownload()->acceptedFileTypes(['image/*'])->hiddenOn('create'),
                                 Forms\Components\FileUpload::make('send_button_icon')->label('Send button icon (96x96) | Less then 100Kb')->enableDownload()->acceptedFileTypes(['image/*'])->hiddenOn('create'),
