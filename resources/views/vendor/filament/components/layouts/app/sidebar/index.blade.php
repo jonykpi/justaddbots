@@ -84,6 +84,7 @@
                 ->filter(fn (\Filament\Navigation\NavigationGroup $group): bool => $group->isCollapsed())
                 ->map(fn (\Filament\Navigation\NavigationGroup $group): string => $group->getLabel())
                 ->values();
+
         @endphp
 
         <script>
@@ -94,12 +95,26 @@
 
 
 
-        <ul class="px-6 space-y-6" style="float: right">
-            <a href="{{url('company/bot/create')}}" class="text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action" >
-                Add project
-            </a>
+        @if(\Illuminate\Support\Facades\Auth::user()->role == "user")
+            <ul class="px-6 space-y-6 " style="">
+                <a href="{{route('filament.pages.dashboard',[
+                    "start"=>\Carbon\Carbon::now()->startOfMonth()->format('Y-m-d'),
+                    "end"=>\Carbon\Carbon::now()->format("Y-m-d"),
+                    "index"=>1
+                    ])}}" class="mb-10 text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action" >
+                    Dashboard
 
-        </ul>
+
+                </a>
+                <a href="{{route('project.create')}}" class="mb-10 text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action" >
+                    Add project
+                </a>
+                <svg data-ids="{{json_encode($collapsedNavigationGroupLabels->toArray())}}"  class="w-3 h-3 all_collpasped text-gray-600 transition dark:text-gray-300 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </ul>
+        @endif
+
         <ul class="px-6 space-y-6">
             @foreach ($navigation as $group)
                 <x-filament::layouts.app.sidebar.group

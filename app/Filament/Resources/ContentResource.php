@@ -33,8 +33,14 @@ class ContentResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('file_title')->hidden(Cache::get('type') == "file")
-                    ->default(Cache::get('type') == "file" ? 'default' : "")->label('Title'),
+                TextInput::make('file_title')->visible(Cache::get('type') == "txt")
+                    ->columnSpan(2)
+                    ->default(Cache::get('type') == "file" ? 'default' : request()->q)->label('Title'),
+                TextInput::make('url')->visible(Cache::get('type') == "url")
+                    ->columnSpan(2)
+                    ->url()
+                    ->required()
+                    ->default(Cache::get('type') == "url" ? '' : request()->q)->label('Crawl url'),
                 Hidden::make('folder_id')
                     ->default(Cache::get('folder_id')),
                 Hidden::make('text_data')
@@ -43,8 +49,8 @@ class ContentResource extends Resource
                     ->default(Cache::get('type')),
                 Hidden::make('file_id')
                     ->default(Str::random(10)),
-                Forms\Components\SpatieMediaLibraryFileUpload::make('file_path')->disabled(Cache::get('type') == "txt")->hidden(Cache::get('type') == "txt")->collection('images')->required()->preserveFilenames()->acceptedFileTypes(['application/pdf'])->enableOpen()->enableDownload(),
-                TinyEditor::make('row_text')->columnSpan(2)->showMenuBar(false)->minHeight(400)->simple()->disabled(Cache::get('type') == "file")->hidden(Cache::get('type') == "file"),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('file_path')->disabled(Cache::get('type') == "txt")->visible(Cache::get('type') == "file")->collection('images')->required()->preserveFilenames()->acceptedFileTypes(['application/pdf'])->enableOpen()->enableDownload(),
+                TinyEditor::make('row_text')->columnSpan(2)->showMenuBar(false)->minHeight(400)->simple()->disabled(Cache::get('type') == "file")->visible(Cache::get('type') == "txt"),
             ]);
     }
 

@@ -69,12 +69,15 @@
 
         </div>
     @endif
-    <div class="content">
-        <p>Hi,</p>
-        <p>We are pleased to inform you that your file - {{$content->file_title}} - has been successfully {{$upload_text}} to our system. You can now access the updated chatbot by clicking on the following link:</p>
-        <p><a href="https://chat.docs2ai.com/?widget={{$content->folder->embedded_id}}">https://chat.docs2ai.com/?widget={{$content->folder->embedded_id}}</a></p>
-        <p>Thank you for choosing our services, and we look forward to serving you again soon.</p>
-    </div>
+    @if(empty($prompt))
+        <div class="content">
+            <p>Hi,</p>
+            <p>We are pleased to inform you that your file - {{$content->file_title}} - has been successfully {{$upload_text}} to our system. You can now access the updated chatbot by clicking on the following link:</p>
+            <p><a href="https://chat.docs2ai.com/?widget={{$content->folder->embedded_id}}">https://chat.docs2ai.com/?widget={{$content->folder->embedded_id}}</a></p>
+            <p>Thank you for choosing our services, and we look forward to serving you again soon.</p>
+        </div>
+    @endif
+
 
     <div class="footer">
         <p>If you have any questions or concerns, please do not hesitate to contact us. We are always happy to assist you.</p>

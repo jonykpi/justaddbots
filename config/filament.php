@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'path' => env('FILAMENT_PATH', 'company'),
+    'path' => env('FILAMENT_PATH', 'swag'),
 
     /*
     |--------------------------------------------------------------------------
@@ -140,7 +140,7 @@ return [
         'path' => app_path('Filament/Widgets'),
         'register' => [
             Widgets\AccountWidget::class,
-            Widgets\FilamentInfoWidget::class,
+            \App\Filament\Resources\DashboardResource\Widgets\FolderList::class,
         ],
     ],
 
@@ -237,7 +237,7 @@ return [
             'have_inline_labels' => false,
         ],
         'footer' => [
-            'should_show_logo' => true,
+            'should_show_logo' => false,
         ],
         'max_content_width' => null,
         'notifications' => [
@@ -317,7 +317,7 @@ return [
     'middleware' => [
         'auth' => [
             Authenticate::class,
-            'verified'
+            "verified"
         ],
         'base' => [
             EncryptCookies::class,

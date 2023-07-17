@@ -14,7 +14,6 @@ module.exports = {
     content: [
         './resources/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
-        './vendor/filament/**/**/*.blade.php',
     ],
     darkMode: 'class',
     theme: {
@@ -42,7 +41,7 @@ module.exports = {
         },
     },
     plugins: [
-        // require('@tailwindcss/forms'),
-        // require('@tailwindcss/typography'),
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
     ],
 }

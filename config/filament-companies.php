@@ -4,6 +4,8 @@ use Wallo\FilamentCompanies\Features;
 use Wallo\FilamentCompanies\Http\Middleware\AuthenticateSession;
 use Wallo\FilamentCompanies\Providers;
 
+
+
 return [
 
     /*
@@ -59,14 +61,7 @@ return [
     */
 
     'providers' => [
-        Providers::github(),
-        Providers::google(),
-        Providers::gitlab(),
-        Providers::bitbucket(),
-        Providers::facebook(),
-        Providers::linkedin(),
-        Providers::twitterOAuth1(),
-        Providers::twitterOAuth2(),
+        // Providers::github(),
     ],
 
     /*
@@ -80,14 +75,14 @@ return [
     |
     */
 
-    'features' => [
+    'features' =>  [
         Features::termsAndPrivacyPolicy(),
-        Features::profilePhotos(),
-        Features::api(),
+        Features::profilePhotos(    ),
+//        Features::api(),
         Features::companies(['invitations' => true]),
         Features::accountDeletion(),
-        Features::socialite(['rememberSession' => true, 'providerAvatars' => true]),
-    ],
+        // Features::socialite(['rememberSession' => true, 'providerAvatars' => true]),
+    ] ,
 
     /*
     |--------------------------------------------------------------------------
@@ -125,5 +120,6 @@ return [
     */
 
     'profile_photo_disk' => 'public',
+
 
 ];

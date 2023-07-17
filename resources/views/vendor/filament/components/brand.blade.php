@@ -3,6 +3,10 @@
         'filament-brand text-xl font-bold tracking-tight',
         'dark:text-white' => config('filament.dark_mode'),
     ])>
-        {{ $brand }}
+
+        <a href="https://www.aibotbuild.com/">
+            <img class="logo" src="{{asset('icons/logo_.png')}}" alt="">
+        </a>
+
     </div>
 @endif

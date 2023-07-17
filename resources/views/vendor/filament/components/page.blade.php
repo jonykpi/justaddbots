@@ -16,25 +16,25 @@
 
 
 
-                    @if(!empty($this->previousUrl) && !isset($this->data['parent_folder_id']) && isset($this->data['id']) && \Request::route()->getName() != "filament.resources.contents.edit")
-                       <div>
-                           <a href="{{route('filament.resources.bot.create',['p'=>$this->data['id']])}}" class="text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action">
-                               Add folder
-                           </a>
+{{--                    @if(!empty($this->previousUrl) && !isset($this->data['parent_folder_id']) && isset($this->data['id']) && \Request::route()->getName() != "filament.resources.contents.edit")--}}
+{{--                       <div>--}}
+{{--                           <a href="{{route('filament.resources.folders.create',['p'=>$this->data['id']])}}" class="text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action">--}}
+{{--                               Add folder--}}
+{{--                           </a>--}}
 
-                           @php
-                           $folder = \App\Models\Folder::find($this->data['id']);
-                           @endphp
+{{--                           @php--}}
+{{--                           $folder = \App\Models\Folder::find($this->data['id']);--}}
+{{--                           @endphp--}}
 
-                            @if(!empty($folder->children) && count($folder->children) == 0)
-                               <a href="{{route('delete.folder',['folder_id'=>$folder->id])}}"  onclick="return confirm('Are you sure you want to delete this item?');"  class="text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-danger-600 hover:bg-danger-500 focus:bg-danger-700 focus:ring-offset-primary-700 filament-page-button-action">
-                                   {{__('Delete folder')}}
-                               </a>
-                            @endif
+{{--                            @if(!empty($folder->children) && count($folder->children) == 0)--}}
+{{--                               <a href="{{route('delete.folder',['folder_id'=>$folder->id])}}"  onclick="return confirm('Are you sure you want to delete this item?');"  class="text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-danger-600 hover:bg-danger-500 focus:bg-danger-700 focus:ring-offset-primary-700 filament-page-button-action">--}}
+{{--                                   {{__('Delete folder')}}--}}
+{{--                               </a>--}}
+{{--                            @endif--}}
 
-                       </div>
+{{--                       </div>--}}
 
-                    @endif
+{{--                    @endif--}}
                     @if(!empty($this->previousUrl) && isset($this->data['parent_folder_id']))
                         <a href="{{$this->previousUrl}}" class="text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action">
                             Back

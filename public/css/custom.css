@@ -7,6 +7,16 @@
     display: flex !important;
     justify-content: space-between;
 }
+.d-none{
+    display: none;
+}
+
+a:disabled{
+    background-color: #c8a6e8 !important;
+}
+button:disabled{
+    background-color: #c8a6e8 !important;
+}
 
 .break-all{
     word-break: break-all;
@@ -21,11 +31,18 @@
 .mous{
     cursor: pointer;
     display: block;
-    margin-top: 0px;
-    padding: 5px !important;
+    padding: 3px !important;
+    color: black !important;
+}
+.parent_mous{
+    padding: 1px;
+    margin-top: 8px !important;
 }
 .dsd{
     margin-top: 10px;
+}
+#dropdownDelayButton{
+    /*padding: 7px;*/
 }
 
 #GfGInput,#GfGInput:focus{
@@ -59,3 +76,219 @@
 .filament-modal-content{
     overflow: scroll;
 }
+.d-flex{
+    display: flex;
+}
+.dop{
+    margin-left: 14px;
+    margin-top: 3px;
+}
+.mt-2{
+    margin-top: 10px;
+}
+.justify-space-between{
+    justify-content: space-between;
+}
+
+.mt-25{
+    margin-top: 25px;
+}
+
+[multiple], [type=date], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], select, textarea{
+    background-color: transparent !important;
+}
+
+.info_icon{
+    margin-top: 14px;
+    margin-left: 7px;
+}
+
+select option{
+    color: black;
+}
+.mb-10{
+    margin-bottom: 27px;
+}
+
+button .items-center:nth-child(1){
+    font-size: 16px !important;
+}
+.select_folder,.select_folder:focus{
+    border-radius: 10px;
+    border-color: #e11d48 !important;
+    padding: 5px 20px 5px 14px !important;
+    background-color: #e11d48 !important;
+    color: white;
+}
+
+.select_folder:before {
+    content: " ";
+    display: inline-block;
+    width: 24px; height: 24px;
+    background: blue;
+}
+
+.company_li{
+    padding: 5px;
+    background-color: rgb(255 255 255/var(--tw-bg-opacity)) !important;
+}
+.company_li a:hover{
+    background:none !important;
+    font-size: 17px;
+}
+
+
+#dropdownDelayMove,#dropdownDelayCp{
+    height: 400px !important; /* adjust height as needed */
+    overflow: auto !important;
+    background-color: transparent;
+}
+
+.btun{
+    display: inherit;
+}
+.btun div{
+    margin-right: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+    .d-md-flex{
+        display: flex;
+    }
+
+}
+
+
+@media only screen and (max-width: 766px) {
+    .btun{
+        display: inline-flex !important;
+    }
+    .as3{
+        text-align: center !important;;
+    }
+
+}
+
+.bg-red-600{
+    background-color: red;
+}
+.tracking-wider{
+    text-align: left;
+}
+.mt_8{
+    margin-top: 8px !important;
+}
+
+.filament-brand{
+    color: gray;
+}
+
+.all_collpasped{
+    display: inherit;
+    float: right;
+    cursor: pointer;
+}
+
+
+:is(.dark .company_li){
+  background-color: rgb(31 41 55/var(--tw-bg-opacity)) !important;
+}
+.logo {
+    width: 990px;
+    float: left;
+}
+.ml-58{
+    margin-left: 58px;
+}
+.ml-58 b{
+    font-weight: 500;
+}
+.ml-58_{
+    margin-left: 31px;
+}
+.ml-58_ b{
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.bg-primary-600 {
+    --tw-bg-opacity: 1;
+    background-color: #4993f1 !important;
+}
+.text-primary-600{
+    color: #3bb3f6 !important;
+}
+
+.filament-login-page {
+    background-image: radial-gradient(circle at top, #3bb3f6,#fff 50%) !important;
+    background-repeat: no-repeat;
+    position: relative;
+}
+:is(.dark .filament-login-page ){
+    background-image: radial-gradient(circle at top, #2a2a38, #000000 50%) !important;
+    background-repeat: no-repeat;
+    position: relative;
+}
+:is(.dark .filament-login-page .text-gray-700 ){
+   color: white !important;
+}
+:is(.dark .dark\:checked\:bg-primary-500:checked ){
+    background-color:#3bb3f6 !important;
+}
+:is(.dark .upl a ){
+    background-color:transparent !important;
+
+}
+:is(.dark .upl .text-slate-800 ){
+    color: white !important;
+}
+.filament-login-page form:before{
+    --tw-gradient-stops: var(--tw-gradient-from),#3bb3f6 var(--tw-gradient-via-position),var(--tw-gradient-to) !important;
+}
+.focus\:border-primary-500:focus{
+    color: #3bb3f6 !important;
+}
+.focus\:ring-primary-500:focus{
+    --tw-ring-color: #a855f7 !important;
+}
+.m-20_ss{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.focus\:border-primary-500:focus{
+    border-color: #a855f7 !important;
+}
+.f_select{
+    min-width: 134px;
+}
+.f_select2{
+    min-width: 225px;
+}
+.f_select_3{
+    min-width: 160px;
+}
+
+.min-width-92{
+    min-width: 92px;
+}
+
+.loadng{
+    background-color: #edeef0;
+}
+.default_settings select{
+    font-size: 14px;
+}
+.min-width-266{
+    min-width: 266px;
+}
+
+.w-162{
+    max-width: 162px;
+}
+
+.bg-none{
+    background: none !important;
+}
+
+

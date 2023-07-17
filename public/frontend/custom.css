@@ -1,0 +1,13 @@
+.header_logo{
+    width: 243px;
+}
+._justify-space-between{
+    display: flex;
+    justify-content: space-between;
+}
+.footer-widget .logo img {
+    max-width: 211px !important;
+}
+.service-item p,.section-heading p{
+    color: #000000 !important;
+}

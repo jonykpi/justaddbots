@@ -48,5 +48,5 @@ return [
      *   - pink: pink.css
      *   - rose: rose.css
      */
-    'color_public_path' => 'vendor/yepsua-filament-themes/css/red.css',
+    'color_public_path' => 'vendor/yepsua-filament-themes/css/blue.css',
 ];

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('folders', function (Blueprint $table) {
             $table->longText('last_email')->nullable();
-
         });
     }
 

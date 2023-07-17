@@ -24,11 +24,14 @@ class AddCompanyEmployee implements AddsCompanyEmployees
      */
     public function add(User $user, Company $company, string $email, string|null $role = null): void
     {
+
         Gate::forUser($user)->authorize('addCompanyEmployee', $company);
 
         $this->validate($company, $email, $role);
 
         $newCompanyEmployee = FilamentCompanies::findUserByEmailOrFail($email);
+        $newCompanyEmployee->role = $user->role;
+        $newCompanyEmployee->save();
 
         AddingCompanyEmployee::dispatch($company, $newCompanyEmployee);
 

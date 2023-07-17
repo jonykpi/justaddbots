@@ -3,13 +3,18 @@
 namespace App\Providers;
 
 use App\Filament\Resources\FolderResource;
+use App\Filament\Resources\PlansResource;
 use App\Models\Folder;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
+use Filament\Navigation\UserMenuItem;
+use Filament\Widgets\AccountWidget;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
-use Yepsua\Filament\Themes\Facades\FilamentThemes;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,16 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-
-        FilamentThemes::register(function($path) {
-            // Using Vite:
-            return app(\Illuminate\Foundation\Vite::class)('resources/' . $path);
-            // Using Mix:
-            return app(\Illuminate\Foundation\Mix::class)($path);
-            // Using asset()
-            return asset($path);
-        });
-
+       Model::unguard();
 
         Filament::registerStyles([
             asset('css/custom.css'),
@@ -45,61 +41,113 @@ class AppServiceProvider extends ServiceProvider
             asset('js/custom.js')
         ]);
 
-
-//        Filament::navigation(function (NavigationBuilder $builder): NavigationBuilder {
-//            return $builder
-//                ->groups([
-//                    NavigationGroup::make('Website')
-//                        ->items([
-//                            ...PageResource::getNavigationItems(),
-//                            ...CategoryResource::getNavigationItems(),
-//                            ...HomePageSettings::getNavigationItems(),
-//                        ]),
-//                ]);
-//        });
+       // dd(Auth::user());
+        Cache::delete('all_folder');
 
         Filament::navigation(function (NavigationBuilder $builder) : NavigationBuilder {
-            $folders = Folder::where('parent_folder_id','=',null)->get();
-            $folder_menus = [
-                NavigationItem::make('Dashboard')
-                    ->icon('heroicon-o-home')
-                    ->badge('main_folder')
-                    ->activeIcon('heroicon-s-home')
-                    ->isActiveWhen(fn (): bool => request()->routeIs('filament.pages.dashboard'))
-                    ->url(route('filament.pages.dashboard'))
-            ];
-            foreach ($folders as $folder){
+            $builder->items([
+//                NavigationItem::make('Dashboard')
+//                    ->icon('heroicon-o-home')
+//                    ->badge('main_folder')
+//                    ->activeIcon('heroicon-s-home')
+//                    ->isActiveWhen(fn (): bool => request()->routeIs('filament.pages.dashboard'))
+//                    ->url(route('filament.pages.dashboard'))
+            ]);
+            if (Auth::user()->role == "user"){
 
-                $sub_folders = Folder::where('parent_folder_id','=',$folder->id)->get();
+                if (!Cache::has('all_folder')){
+                   $all_folder = Folder::with('contents')->where('company_id',Auth::user()->currentCompany->id)->get();
+                    Cache::set('all_folder',$all_folder);
 
-                $url = route('filament.resources.bot.view',$folder->id);
+                }else{
+                    $all_folder = Cache::get('all_folder');
 
-                if (!$folder->parent_folder_id){
-                    $url = route('filament.resources.bot.viewProject',$folder->id);
                 }
 
-                array_push($folder_menus,
-                    NavigationItem::make($folder->name)
-                        ->icon('heroicon-o-cog')
+                $folders = $all_folder->where('parent_folder_id','=',null);
+
+                foreach ($folders as $folder){
+
+                    $sum_menus = [];
+
+                    $sub_folders = $all_folder->where('parent_folder_id','=',$folder->id);
+
+
+                    $url = route('filament.resources.folders.view',$folder->id);
+
+                    if (!$folder->parent_folder_id){
+                        $url = route('filament.resources.folders.viewProject',$folder->id);
+                    }
+
+
+//                    array_push($folder_menus,
+//                        NavigationItem::make($folder->name)
+//                            ->icon('heroicon-o-cog')
+//                            ->badge('main_folder')
+//                            ->activeIcon('heroicon-s-cog')
+//                            ->isActiveWhen(fn (): bool => request()->fullUrlIs(url('admin/folders/project/view/'.$folder->id)) || request()->fullUrlIs(url('admin/folders/'.$folder->id."/edit"))|| request()->fullUrlIs(url('admin/folders/'.$folder->id."/thumb/logs")))
+//                            ->url($url)
+//                    );
+                    array_push($sum_menus,
+                                            NavigationItem::make("Settings")
+                            ->icon('heroicon-o-cog')
+                            ->badge('main_folder')
+                            ->activeIcon('heroicon-s-cog')
+                            ->isActiveWhen(fn (): bool => request()->fullUrlIs(url('admin/folders/project/view/'.$folder->id)) || request()->fullUrlIs(url('admin/folders/'.$folder->id."/edit"))|| request()->fullUrlIs(url('admin/folders/'.$folder->id."/thumb/logs")))
+                            ->url($url)
+                    );
+
+                    foreach ($sub_folders as $sub_folder){
+                        array_push($sum_menus,
+                            NavigationItem::make($sub_folder->name)
+                                ->icon(($sub_folder->whatsapp_number && $sub_folder->whatsapp_access_token && $sub_folder->whatsapp_id) ? 'heroicon-o-phone' : 'heroicon-o-folder')
+                                ->badge($sub_folder->contents->count())
+                                ->activeIcon(($sub_folder->whatsapp_number && $sub_folder->whatsapp_access_token && $sub_folder->whatsapp_id) ? 'heroicon-o-phone' : 'heroicon-o-folder')
+                                ->isActiveWhen(fn (): bool => request()->fullUrlIs(url('admin/folders/view/'.$sub_folder->id))
+                                    || request()->fullUrlIs(url('admin/folders/'.$sub_folder->id."/edit"))
+                                    || request()->fullUrlIs(url('admin/dynamic-buttons?folder_id='.$sub_folder->id))
+                                    || request()->fullUrlIs(url('admin/contents/create?folder_id='.$sub_folder->id."&type=txt"))
+                                    || request()->fullUrlIs(url('admin/contents/create?folder_id='.$sub_folder->id."&type=file"))
+                                    || request()->fullUrlIs(url('admin/dynamic-buttons/create?folder_id='.$sub_folder->id))
+                                    || request()->fullUrlIs(url('admin/folders/'.$sub_folder->id."/thumb/logs")))
+                                ->url(route('filament.resources.folders.view',$sub_folder->id)));
+                    }
+
+
+                    $builder
+                        ->groups([
+                            NavigationGroup::make($folder->name)->collapsed()
+                                ->items($sum_menus),
+                        ]);
+
+
+                }
+            }else{
+                $builder->items([
+                    NavigationItem::make('Users')
+                        ->icon('heroicon-o-users')
                         ->badge('main_folder')
-                        ->activeIcon('heroicon-s-cog')
-                        ->isActiveWhen(fn (): bool => request()->fullUrlIs(url('company/bot/project/view/'.$folder->id)) || request()->fullUrlIs(url('company/bot/'.$folder->id."/edit"))|| request()->fullUrlIs(url('company/bot/'.$folder->id."/thumb/logs")))
-                        ->url($url)
-                );
-
-                foreach ($sub_folders as $sub_folder){
-                    array_push($folder_menus,
-                        NavigationItem::make($sub_folder->name)->group('221')
-                        ->icon('heroicon-o-folder')
-                         ->badge($sub_folder->contents->count())
-                        ->activeIcon('heroicon-s-folder')
-                        ->isActiveWhen(fn (): bool => request()->fullUrlIs(url('company/bot/view/'.$sub_folder->id)) || request()->fullUrlIs(url('company/bot/'.$sub_folder->id."/edit")) || request()->fullUrlIs(url('company/bot/'.$sub_folder->id."/thumb/logs")))
-                        ->url(route('filament.resources.bot.view',$sub_folder->id)));
-                }
-
+                        ->activeIcon('heroicon-s-users')
+                        ->isActiveWhen(fn (): bool => request()->routeIs('filament.resources.users.index'))
+                        ->url(route('filament.resources.users.index')),
+                    NavigationItem::make('Plans')
+                        ->icon('heroicon-o-server')
+                        ->badge('main_folder')
+                        ->activeIcon('heroicon-s-server')
+                        ->isActiveWhen(fn (): bool => request()->routeIs('filament.resources.plans.index'))
+                        ->url(route('filament.resources.plans.index')),
+                    NavigationItem::make('Settings')
+                        ->icon('heroicon-o-server')
+                        ->badge('main_folder')
+                        ->activeIcon('heroicon-s-server')
+                        ->isActiveWhen(fn (): bool => request()->routeIs('filament.pages.manage-default-project'))
+                        ->url(route('filament.pages.manage-default-project')),
+                ]);
 
             }
-            return $builder->items($folder_menus);
+
+
+            return $builder;
         });
 
     }

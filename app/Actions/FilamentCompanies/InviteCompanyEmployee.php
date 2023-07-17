@@ -26,6 +26,10 @@ class InviteCompanyEmployee implements InvitesCompanyEmployees
      */
     public function invite(User $user, Company $company, string $email, string|null $role = null): void
     {
+        if (empty($role)){
+            $role = $user->role;
+        }
+
         Gate::forUser($user)->authorize('addCompanyEmployee', $company);
 
         $this->validate($company, $email, $role);
@@ -36,6 +40,7 @@ class InviteCompanyEmployee implements InvitesCompanyEmployees
             'email' => $email,
             'role' => $role,
         ]);
+
 
         Mail::to($email)->send(new CompanyInvitation($invitation));
     }

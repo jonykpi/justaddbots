@@ -3,9 +3,12 @@
 namespace App\Filament\Resources\FolderResource\Pages;
 
 use App\Filament\Resources\FolderResource;
+use App\Models\Company;
 use App\Models\Folder;
+use Filament\Notifications\Notification;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Spatie\PdfToText\Pdf;
 
@@ -31,6 +34,8 @@ class CreateFolder extends CreateRecord
 
 
             $this->record->bot_top_default_title = $parent->bot_top_default_title;
+            $this->record->is_multi_lang = $parent->is_multi_lang;
+            $this->record->lang_all_column = $parent->lang_all_column;
             $this->record->bot_placeholder_title = $parent->bot_placeholder_title;
             $this->record->bot_text_font_color = $parent->bot_text_font_color;
 
@@ -45,6 +50,8 @@ class CreateFolder extends CreateRecord
             $this->record->instruction_text = $parent->instruction_text;
             $this->record->show_source_in_response = $parent->show_source_in_response;
             $this->record->promote_template = $parent->promote_template;
+            $this->record->prompt_lang = $parent->prompt_lang;
+            $this->record->test_prompt = $parent->test_prompt;
             $this->record->temperature = $parent->temperature;
 
             $this->record->custom_button_is_enable = $parent->custom_button_is_enable;
@@ -52,11 +59,17 @@ class CreateFolder extends CreateRecord
             $this->record->custom_button_link = $parent->custom_button_link;
             $this->record->custom_button_color = $parent->custom_button_color;
 
+            $this->record->number_of_source = $parent->number_of_source;
+            $this->record->language_model = $parent->language_model;
+
         }else{
+
 
             $this->record->bot_top_default_title = "Hola soy tu asistente virtual… puedo ayudarte respondiendo tus preguntas?";
             $this->record->bot_placeholder_title = "Escribe aquí tu pregunta…";
             $this->record->bot_text_font_color = "#ffffff";
+
+            $this->record->is_multi_lang = 0;
 
             $this->record->bot_text_font_size = "16";
 
@@ -75,7 +88,10 @@ Question: {question}
 =========
 {context}
 =========
-Answer in spanish or english:";
+";
+            $this->record->prompt_lang = 'US';
+            $this->record->test_prompt = 'Create a compelling and persuasive sentence trying answer the User question, with the information from the Bot answer, Keywords, Call to action button and Button description, while also trying to persuade tourist to click below on the Call to action button.
+=========';
 
             $this->record->instruction_text = "**How to use?**
 
@@ -85,6 +101,9 @@ If you need any additional help, you can contact us at [Docs2ai.com](https://www
 _____
 _**Disclaimer:**  This chatbot, built on top of the latest AI models, was developed to provide helpful and timely information, but its responses may be limited by its programming and data. Users should evaluate the information provided and use it at their own risk._
 ";
+
+            $this->record->number_of_source = 1;
+            $this->record->language_model = 'gpt-3.5-turbo';
 
         }
 
@@ -96,18 +115,77 @@ _**Disclaimer:**  This chatbot, built on top of the latest AI models, was develo
         }
 
 
+
+        $this->record->default_file_id = 'new';
+        $this->record->default_then = 'DO NOTHING';
+        $this->record->default_email_settings = '[
+    {
+        "to": "i",
+        "from": "a",
+        "include": "n"
+    }
+]';
+
         $this->record->save();
+
+      //  dispatch(new \App\Jobs\EditFolder($this->record));
+
+    }
+    public function beforeValidate(): void {
+
+        $user = Company::find($this->data['company_id'])->user()->first();
+
+
+      if ($user->plan){
+         if ($user->plan->max_number_of_bot != -1){
+             if ($user->plan->max_number_of_bot <= $user->bots->count()){
+                 Notification::make()
+                     ->title("You have reached the limit, please contact with docs2ai.com")
+                     ->danger()
+                     ->send();
+                 $this->halt();
+             }
+         }
+
+
+      }else{
+          Notification::make()
+              ->title("You have no package,upgrade your plan !")
+              ->danger()
+              ->send();
+          $this->halt();
+      }
+
+
+
+
+
+
+
+
+//        if (isset($this->data['parent_folder_id'])){
+//            $this->record->parent_folder_id = $this->data['parent_folder_id'];
+//        }
+//
+//
+//
+//        $this->record->save();
+
+      //  dispatch(new \App\Jobs\EditFolder($this->record));
 
     }
 
     protected function getRedirectUrl(): string
     {
         if (!empty($this->record->parent_folder_id)){
-            return route('filament.resources.bot.view',$this->record->id);
+            return route('filament.resources.folders.view',$this->record->id);
         }
-        return route('filament.resources.bot.viewProject',$this->record->id);
+        return route('filament.resources.folders.viewProject',$this->record->id);
 
     }
+
+
+
 
 
 

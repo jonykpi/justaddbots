@@ -5,6 +5,7 @@ namespace App\Filament\Resources\ContentResource\Pages;
 use App\Filament\Resources\ContentResource;
 use App\Models\Content;
 use App\Models\Folder;
+use Filament\Notifications\Notification;
 use Filament\Pages\Actions;
 use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\EditRecord;
@@ -12,6 +13,7 @@ use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Spatie\PdfToText\Pdf;
 
 class EditContent extends EditRecord
@@ -45,14 +47,46 @@ class EditContent extends EditRecord
     }
 
 
+    public function beforeValidate(): void {
 
+        $user = Folder::find($this->data['folder_id'])->company->user;
+
+        if (count($this->data['file_path']) > 0) {
+            if ($user->plan) {
+                if ($user->plan->max_number_of_mb != -1) {
+
+                    $total_size = (array_values($this->data['file_path'])[0]->getSize() * 0.000001) + ($user->mediaSize->sum('size') * 0.000001);
+
+                    if ($total_size >= $user->plan->max_number_of_mb) {
+                        Notification::make()
+                            ->title("You have reached the limit, please contact with docs2ai.com")
+                            ->danger()
+                            ->send();
+                        $this->halt();
+                    }
+                }
+
+
+            } else {
+                Notification::make()
+                    ->title("You have no package,upgrade your plan !")
+                    ->danger()
+                    ->send();
+                $this->halt();
+            }
+        }
+    }
 
     protected function beforeSave(): void
     {
 
+
         if (!empty($this->previous_file_path))
         deleteVector($this->record->folder->embedded_id,[$this->previous_file_path]);
 
+        if (!empty($this->record->file_title)){
+            deleteVector($this->record->folder->embedded_id,[$this->clean($this->record->file_title)]);
+        }
         if (!empty($this->previous_file_title)){
             deleteVector($this->record->folder->embedded_id,[$this->previous_file_title]);
         }
@@ -84,7 +118,35 @@ class EditContent extends EditRecord
                 ],
                 ['Content-Type' => 'application/json']
             );
-        }else{
+        }
+        elseif ($this->record->type == "url"){
+
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('GET', $this->data['url']);
+            $client = new \GuzzleHttp\Client();
+            $response = $client->post(
+                env('BOT_URL')."/api/url-training",
+                [
+                    RequestOptions::JSON =>
+                        [
+                            'name' => $this->data['url'],
+                            'pincone_name' => $this->record->folder->embedded_id,
+                        ]
+                ],
+                ['Content-Type' => 'application/json']
+            );
+
+            $responseJSON = json_decode($response->getBody(), true);
+
+            if ($responseJSON['status'] == true){
+                $this->record->is_learned = '1';
+            }else{
+                $this->record->is_learned = '0';
+            }
+            $this->record->file_title  = $this->record->url;
+            $this->record->save();
+        }
+        else{
             $text =   $this->record->row_text;
 
 
@@ -94,7 +156,7 @@ class EditContent extends EditRecord
                 [
                     RequestOptions::JSON =>
                         [
-                            'name' => $this->clean($this->record->file_title),
+                            'name' => route('folderTextContent',["id"=>$this->record,"slug"=>Str::slug($this->record->file_title)]),
                             'pincone_name' => $this->record->folder->embedded_id,
                             'content' => $text,
                         ]
@@ -129,5 +191,10 @@ class EditContent extends EditRecord
             Actions\ViewAction::make(),
             Actions\DeleteAction::make(),
         ];
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return route('filament.resources.folders.view',$this->data['folder_id']);
     }
 }

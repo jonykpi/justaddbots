@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'prefix' => 'auth',
+    'prefix' => '',
 
     'domain' => null,
 
@@ -89,7 +89,7 @@ return [
     |
     */
 
-    'middleware' => config('filament.middleware.base'),
+    'middleware' => ['web'],
 
     /*
     |--------------------------------------------------------------------------
@@ -134,7 +134,7 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-         Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([

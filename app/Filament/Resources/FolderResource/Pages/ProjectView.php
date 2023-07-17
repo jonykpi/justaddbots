@@ -21,7 +21,11 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 use Spatie\PdfToText\Pdf;
+use function PHPUnit\Framework\throwException;
 
 class ProjectView extends Page implements HasForms,HasTable
 {
@@ -34,6 +38,7 @@ class ProjectView extends Page implements HasForms,HasTable
     //public static ?string $title = 'View folder';
 
 
+
     protected static string $resource = FolderResource::class;
 
     public $file_path;
@@ -44,12 +49,18 @@ class ProjectView extends Page implements HasForms,HasTable
     public ?string $is_learned;
 
 
+
     public function mount(): void
     {
+;
 
         $this->content = new Content();
         $this->folder_id = \request()->route('record');
+
         $folder = Folder::find($this->folder_id);
+        if($folder->company_id != Auth::user()->company->id){
+            throw new \ErrorException('Error found');
+        }
         //$this->title = $folder->name;
         Page::$title = $folder->name;
         $this->embedded_id = $folder->embedded_id;
@@ -80,8 +91,31 @@ class ProjectView extends Page implements HasForms,HasTable
     public function delete()
     {
         $current = Folder::find($this->folder_id);
-        Content::where('folder_id', $this->folder_id)->delete();
+        foreach ($current->children as $child){
+            deleteVector($child->embedded_id);
+            Content::where('folder_id', $child->id)->delete();
+        }
+        if ($current->embedded_id){
+            deleteVector($current->embedded_id);
+        }
         $current->delete();
+
+        return redirect()->route('filament.pages.dashboard');
+
+    }
+    public function deleteProject()
+    {
+        $current = Folder::find($this->folder_id);
+        foreach ($current->children as $child){
+            deleteVector($child->embedded_id);
+            Content::where('folder_id', $child->id)->delete();
+            $child->delete();
+        }
+        if ($current->embedded_id){
+            deleteVector($current->embedded_id);
+            $current->delete();
+        }
+
 
         return redirect()->route('filament.pages.dashboard');
 
@@ -106,9 +140,9 @@ class ProjectView extends Page implements HasForms,HasTable
    {
        return [
            Action::make('edit')
-               ->url(fn (Folder $record): string => route('filament.resources.bot.edit', $record)),
+               ->url(fn (Folder $record): string => route('filament.resources.folders.edit', $record)),
             Action::make('view')
-                ->url(fn (Folder $record): string => route('filament.resources.bot.view', $record)),
+                ->url(fn (Folder $record): string => route('filament.resources.folders.view', $record)),
            DeleteAction::make()
        ];
    }
@@ -158,7 +192,7 @@ class ProjectView extends Page implements HasForms,HasTable
 
         Content::create($arra);
 
-        return redirect()->route('filament.resources.bot.view', $this->folder_id);
+        return redirect()->route('filament.resources.folders.view', $this->folder_id);
     }
 
     protected static string $view = 'filament.resources.folder-resource.pages.custom-list-folders';
