@@ -47,7 +47,8 @@
                                    data-collapse="{{asset('icons/collapse-svgrepo-com.svg')}}"
                                @endif
 
-                               @if($folder->script_expand_icon)
+
+                               @if($folder->script_collapsable_background_color)
                                    data-color="{{$folder->script_collapsable_background_color}}"
                                @else
                                    data-color="#970986"
