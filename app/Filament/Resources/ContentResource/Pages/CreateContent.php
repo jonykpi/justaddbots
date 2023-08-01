@@ -173,7 +173,7 @@ class CreateContent extends CreateRecord
 
                 $responseJSON = json_decode($response->getBody(), true);
 
-dd($responseJSON,env('BOT_URL'));
+dd($responseJSON,env('BOT_URL'),$text,$this->record->folder->embedded_id);
 
                 if ($responseJSON['status'] == false){
                     $this->record->is_learned = '1';
