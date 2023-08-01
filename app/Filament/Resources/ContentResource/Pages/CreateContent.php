@@ -127,6 +127,7 @@ class CreateContent extends CreateRecord
                     'callback' => route('ocr-callback'),
                 ];
                 $response = Http::post(env('OCR_API'), $_data);
+                dd($response);
             }
             elseif ($this->record->type == "url"){
 
