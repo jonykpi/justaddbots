@@ -1,5 +1,5 @@
 !function(e) {
-    const baseUrl = 'https://chat.docs2ai.com'
+    const baseUrl = 'https://chat.aibotbuild.com'
     var expand = document.querySelector('script[data-expand]').dataset.expand;
     var collape = document.querySelector('script[data-collapse]').dataset.collapse;
     var color = document.querySelector('script[data-color]').dataset.color;
