@@ -14,16 +14,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('users')->delete();
-        
+
         \DB::table('users')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'name' => 'Admin',
-                'email' => 'admin@docs2ai.com',
+                'email' => 'admin@aibotbuild.com',
                 'email_verified_at' => '2023-04-30 10:04:36',
                 'password' => '$2y$10$KNiECPcOfikyb5JWvW725OJONdzHXP0fM30adVmuT6BKZUbOfSAgy',
                 'two_factor_secret' => NULL,
@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
                 'role' => 'admin',
             ),
         ));
-        
-        
+
+
     }
 }

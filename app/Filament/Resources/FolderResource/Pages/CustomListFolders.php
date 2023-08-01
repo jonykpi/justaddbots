@@ -194,17 +194,17 @@ class CustomListFolders extends Page implements HasForms,HasTable
         $cpanel = new \App\Http\Service\cPanelApi(env('CPANEL_HOST'),env('CPANEL_USERNAME'),env('CPANEL_PASSWORD'));
         $string = Str::lower(Str::random(10));
 
-        $mail=  $cpanel->createEmail($string."@docs2ai.com",$string);
+        $mail=  $cpanel->createEmail($string."@aibotbuild.com",$string);
 
 
         if (json_decode($mail)->status == 1){
 
             $folder = Folder::find($this->folder_id);
             $folder->email_status = 1;
-            $folder->email = $string."@docs2ai.com";
+            $folder->email = $string."@aibotbuild.com";
             $folder->save();
 
-            $this->enable_email = $string."@docs2ai.com";
+            $this->enable_email = $string."@aibotbuild.com";
             $this->reactive_text = "Deactivate";
         }
 

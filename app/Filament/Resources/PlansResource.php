@@ -23,7 +23,7 @@ class PlansResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return str_ends_with(Auth::user()->email, '@docs2ai.com');
+        return str_ends_with(Auth::user()->email, '@aibotbuild.com');
     }
 
     public static function form(Form $form): Form
