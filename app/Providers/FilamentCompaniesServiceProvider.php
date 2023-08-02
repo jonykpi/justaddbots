@@ -33,6 +33,7 @@ class FilamentCompaniesServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         if (FilamentCompanies::hasCompanyFeatures()) {
             Filament::registerRenderHook(
                 'global-search.end',

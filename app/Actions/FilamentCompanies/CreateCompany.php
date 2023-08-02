@@ -22,6 +22,7 @@ class CreateCompany implements CreatesCompanies
      */
     public function create(User $user, array $input): Company
     {
+
         Gate::forUser($user)->authorize('create', FilamentCompanies::newCompanyModel());
 
         Validator::make($input, [
@@ -29,6 +30,7 @@ class CreateCompany implements CreatesCompanies
         ])->validateWithBag('createCompany');
 
         AddingCompany::dispatch($user);
+
 
         $user->switchCompany($company = $user->ownedCompanies()->create([
             'name' => $input['name'],

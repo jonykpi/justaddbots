@@ -45,10 +45,15 @@ class CreateNewUser implements CreatesNewUsers
      */
     protected function createCompany(User $user): void
     {
-        $user->ownedCompanies()->save(Company::forceCreate([
+       $com =  Company::forceCreate([
             'user_id' => $user->id,
             'name' => explode(' ', $user->name, 2)[0]."'s Company",
             'personal_company' => true,
-        ]));
+        ]);
+        $user->ownedCompanies()->save($com);
+        if (empty($user->current_company_id)){
+            $user->current_company_id = $com->id;
+            $user->save();
+        }
     }
 }

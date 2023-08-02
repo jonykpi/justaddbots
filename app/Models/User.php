@@ -140,8 +140,9 @@ class User extends Authenticatable implements FilamentUser, HasAvatar,MustVerify
     }
     public function lastMonthDateWithCompany($type = null){
       //  dd('sdsd',$this->company->id);
-
-        $qr = ResponseHistory::where('company_id',$this->company->id);
+        if ($this->company)
+        $qr = ResponseHistory::where('company_id', $this->company->id);
+        $qr = ResponseHistory::query();
         if ($type){
             $qr = $qr->where('model_type',$type) ;
         }
