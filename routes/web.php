@@ -198,3 +198,9 @@ Route::middleware([
 
 });
 
+
+Route::get('sitemap',function() {
+    \Spatie\Sitemap\SitemapGenerator::create('https://aibotbuild.com')->writeToFile('sitemap.xml');
+
+});
+

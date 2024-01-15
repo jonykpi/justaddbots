@@ -22,6 +22,7 @@
         "orangehill/iseed": "^3.0",
         "predis/predis": "^2.1",
         "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-sitemap": "^7.0",
         "spatie/pdf-to-text": "^1.52",
         "stechstudio/filament-impersonate": "^2.18",
         "symfony/process": "^6.2",
