@@ -329,7 +329,6 @@
 {{--                </div>--}}
 {{--            </div>--}}
 
-
             <div>
                 <div class="p-6 pb-20 w-full max-w-5xl mx-auto">
                     <div class=" w-full max-w-5xl mx-auto">
