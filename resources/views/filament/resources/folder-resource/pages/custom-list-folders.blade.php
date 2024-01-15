@@ -102,73 +102,73 @@
 
 
 
-                               <div class="mt-25 d-flex mixin-flex-and-centre ">
+{{--                               <div class="mt-25 d-flex mixin-flex-and-centre ">--}}
 
 
-                                  <div>
-                                      <button id="dropdownDelayButton" data-dropdown-toggle="dropdownDelay" data-dropdown-delay="500" data-dropdown-trigger="hover" class="text-right filament-button filament-button-size-md inline-flex items-center justify-center  mt-2 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action" type="button">
-                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                          </svg>
-                                          <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                      </button>
-                                      <!-- Dropdown menu -->
-                                      <div id="dropdownDelay" class="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-44 z-auto border-2 bg-offwhite">
-                                          <ul class="py-2 text-sm text-gray-700 sasqasw3 dark:text-gray-200" aria-labelledby="dropdownDelayButton">
-                                              <li>
+{{--                                  <div>--}}
+{{--                                      <button id="dropdownDelayButton" data-dropdown-toggle="dropdownDelay" data-dropdown-delay="500" data-dropdown-trigger="hover" class="text-right filament-button filament-button-size-md inline-flex items-center justify-center  mt-2 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action" type="button">--}}
+{{--                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">--}}
+{{--                                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />--}}
+{{--                                          </svg>--}}
+{{--                                          <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>--}}
+{{--                                      </button>--}}
+{{--                                      <!-- Dropdown menu -->--}}
+{{--                                      <div id="dropdownDelay" class="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-44 z-auto border-2 bg-offwhite">--}}
+{{--                                          <ul class="py-2 text-sm text-gray-700 sasqasw3 dark:text-gray-200" aria-labelledby="dropdownDelayButton">--}}
+{{--                                              <li>--}}
 
 
-                                                  <a href="javascript:" wire:click="reactiveOrDeactive"  title="Click to copy" data-success-title="Copied!" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                      @if(!empty($reactive_text))
-                                                          {{$reactive_text}}
-                                                      @else
-                                                          {{__('Activate')}}
-                                                      @endif
+{{--                                                  <a href="javascript:" wire:click="reactiveOrDeactive"  title="Click to copy" data-success-title="Copied!" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">--}}
+{{--                                                      @if(!empty($reactive_text))--}}
+{{--                                                          {{$reactive_text}}--}}
+{{--                                                      @else--}}
+{{--                                                          {{__('Activate')}}--}}
+{{--                                                      @endif--}}
 
-                                                  </a>
-                                              </li>
-                                              <li>
-                                                  <a href="javascript:" wire:click="generateNEwEmail" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{__('Generate new')}}</a>
-                                              </li>
-                                              <li>
-                                                  <a href="{{route('lastEmail',$this->folder_id)}}" target="_blank" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{__('Last email')}}</a>
-                                              </li>
+{{--                                                  </a>--}}
+{{--                                              </li>--}}
+{{--                                              <li>--}}
+{{--                                                  <a href="javascript:" wire:click="generateNEwEmail" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{__('Generate new')}}</a>--}}
+{{--                                              </li>--}}
+{{--                                              <li>--}}
+{{--                                                  <a href="{{route('lastEmail',$this->folder_id)}}" target="_blank" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{__('Last email')}}</a>--}}
+{{--                                              </li>--}}
 
-                                          </ul>
-                                      </div>
+{{--                                          </ul>--}}
+{{--                                      </div>--}}
 
-                                  </div>
+{{--                                  </div>--}}
 
-                                   <span class=" dop bg-offwhite border-2 shadow border-radius-50 parent_mous ">
+{{--                                   <span class=" dop bg-offwhite border-2 shadow border-radius-50 parent_mous ">--}}
 
-                                       <input type="text" readonly class="mous" id="GfGInput" name="" value="{{!empty($enable_email) ? $enable_email : __('Import files via email')}}">
+{{--                                       <input type="text" readonly class="mous" id="GfGInput" name="" value="{{!empty($enable_email) ? $enable_email : __('Import files via email')}}">--}}
 
-                                     </span>
-                                  <span class="info_icon" x-data="{}" x-tooltip.raw="
-                                  A @‌docs2ai.com email address is a unique feature to Docs2ai that allows users to:
+{{--                                     </span>--}}
+{{--                                  <span class="info_icon" x-data="{}" x-tooltip.raw="--}}
+{{--                                  A @‌docs2ai.com email address is a unique feature to Docs2ai that allows users to:--}}
 
-UPLOAD training PDFs to your folder, just send a PDF as a file attachment
+{{--UPLOAD training PDFs to your folder, just send a PDF as a file attachment--}}
 
-REPLACE training PDFs using FileID, send a PDF as a file attachment and, in email subject add the following instruction [[replace=FileID]]
+{{--REPLACE training PDFs using FileID, send a PDF as a file attachment and, in email subject add the following instruction [[replace=FileID]]--}}
 
-Generate an EMAIL SUMMARY of the PDF attachment, send a PDF as a file attachment and, in email subject add the following instruction [[prompt=summary]]
+{{--Generate an EMAIL SUMMARY of the PDF attachment, send a PDF as a file attachment and, in email subject add the following instruction [[prompt=summary]]--}}
 
-Generate an EMAIL RESPONSE to a custom question/prompt, send a PDF as a file attachment and, in email subject add the following instruction [[prompt=you_question]]
+{{--Generate an EMAIL RESPONSE to a custom question/prompt, send a PDF as a file attachment and, in email subject add the following instruction [[prompt=you_question]]--}}
 
-Note:  all instructions start with “[[“ and end with “]]”, also all email responses will be sent as an email reply.  To change the email to address for email summaries or responses, add to the instruction “|” separator and then the email address, for example, [[prompt=summary|email@email.com]]
-                                  " >
-                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                       <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                                   </svg>
+{{--Note:  all instructions start with “[[“ and end with “]]”, also all email responses will be sent as an email reply.  To change the email to address for email summaries or responses, add to the instruction “|” separator and then the email address, for example, [[prompt=summary|email@email.com]]--}}
+{{--                                  " >--}}
+{{--                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">--}}
+{{--                                       <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />--}}
+{{--                                   </svg>--}}
 
-                                  </span>
-                                   <a class="info_icon text-primary-600"  href="{{route('filament.resources.mail-activities.index',['folder_id'=>$this->folder_id])}}">Log</a>
-                                   <a class="info_icon text-primary-600" wire:click="defaultReset" href="javascript:">Reset</a>
+{{--                                  </span>--}}
+{{--                                   <a class="info_icon text-primary-600"  href="{{route('filament.resources.mail-activities.index',['folder_id'=>$this->folder_id])}}">Log</a>--}}
+{{--                                   <a class="info_icon text-primary-600" wire:click="defaultReset" href="javascript:">Reset</a>--}}
 
-                               </div>
-                               <div class="mt-4 px-4 py-3">
+{{--                               </div>--}}
+{{--                               <div class="mt-4 px-4 py-3">--}}
 
-                               </div>
+{{--                               </div>--}}
                            </div>
                        </div>
 
@@ -178,156 +178,156 @@ Note:  all instructions start with “[[“ and end with “]]”, also all ema
 
                 </div>
             </div>
-            <div class="">
-                <div id="" class="m-20_ss filament-forms-section-component rounded-xl border border-gray-300 bg-white dark:border-gray-600 dark:bg-gray-800">
-                    <div class="filament-forms-section-content-wrapper " wire:loading.class="loadng">
-                        <div class="p-1   w-full max-w-5xl mx-auto">
-                            <div  class="grid grid-cols-1   lg:grid-cols-4   filament-forms-component-container">
+{{--            <div class="">--}}
+{{--                <div id="" class="m-20_ss filament-forms-section-component rounded-xl border border-gray-300 bg-white dark:border-gray-600 dark:bg-gray-800">--}}
+{{--                    <div class="filament-forms-section-content-wrapper " wire:loading.class="loadng">--}}
+{{--                        <div class="p-1   w-full max-w-5xl mx-auto">--}}
+{{--                            <div  class="grid grid-cols-1   lg:grid-cols-4   filament-forms-component-container">--}}
 
-                                <div class="col-span-full">
-                                    <div class="flex">
-                                        <div class="grid grid-cols-1   lg:grid-cols-1   filament-forms-component-container">
-                                            <div class="col-span-1">
-                                                <div class="filament-forms-field-wrapper default_settings">
+{{--                                <div class="col-span-full">--}}
+{{--                                    <div class="flex">--}}
+{{--                                        <div class="grid grid-cols-1   lg:grid-cols-1   filament-forms-component-container">--}}
+{{--                                            <div class="col-span-1">--}}
+{{--                                                <div class="filament-forms-field-wrapper default_settings">--}}
 
-                                                    <div class="space-y-2">
+{{--                                                    <div class="space-y-2">--}}
 
-                                                        <div class="filament-forms-text-input-component flex items-center space-x-2 rtl:space-x-reverse group">
+{{--                                                        <div class="filament-forms-text-input-component flex items-center space-x-2 rtl:space-x-reverse group">--}}
 
-                                                            <div class=" flex p-2">
-                                                                IF an email with a PDF received, autometically upload and train as
-                                                            </div>
-                                                            <div class=" flex p-2">
+{{--                                                            <div class=" flex p-2">--}}
+{{--                                                                IF an email with a PDF received, autometically upload and train as--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class=" flex p-2">--}}
 
-                                                                <select type="text"  wire:model.defer="default_file_id" class="f_select p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >
-                                                                    <option  {{$default_file_id == 'new' ? "selected" : ""}} value="new">{{__('NEW FILE ID')}}</option>
-                                                                    @foreach($folder->contents as $content)
-                                                                        <option {{$content->file_id == $default_file_id ? "selected" : ""}} value="{{$content->file_id}}" >{{$content->file_id}}</option>
-                                                                    @endforeach
+{{--                                                                <select type="text"  wire:model.defer="default_file_id" class="f_select p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >--}}
+{{--                                                                    <option  {{$default_file_id == 'new' ? "selected" : ""}} value="new">{{__('NEW FILE ID')}}</option>--}}
+{{--                                                                    @foreach($folder->contents as $content)--}}
+{{--                                                                        <option {{$content->file_id == $default_file_id ? "selected" : ""}} value="{{$content->file_id}}" >{{$content->file_id}}</option>--}}
+{{--                                                                    @endforeach--}}
 
-                                                                </select>
-                                                            </div>
-                                                            <div class=" flex p-2">
-                                                                then
-                                                            </div>
-                                                            <div class=" flex p-2">
-                                                                <select type="text"  wire:model="default_then" class="f_select_3 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >
-                                                                    <option {{$default_then == 'DO NOTHING' ? "selected" : ""}} value="DO NOTHING">DO NOTHING</option>
-                                                                    <option {{$default_then == 'SUMMARIZE' ? "selected" : ""}} value="SUMMARIZE">SUMMARIZE</option>
-                                                                    <option {{$default_then == 'Custom PROMPT' ? "selected" : ""}} value="Custom PROMPT">Custom PROMPT</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        @if($default_then == "Custom PROMPT")
-                                                            <div class=" flex p-2">
-                                                                <input type="text" wire:model.defer="default_custom_prompt"  class="f_select p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" />
-                                                            </div>
-                                                        @endif
-                                                    </div>
-                                                    @if($default_email_settings)
-                                                        @for($i = 0;$i < count($default_email_settings);$i++)
+{{--                                                                </select>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class=" flex p-2">--}}
+{{--                                                                then--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class=" flex p-2">--}}
+{{--                                                                <select type="text"  wire:model="default_then" class="f_select_3 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >--}}
+{{--                                                                    <option {{$default_then == 'DO NOTHING' ? "selected" : ""}} value="DO NOTHING">DO NOTHING</option>--}}
+{{--                                                                    <option {{$default_then == 'SUMMARIZE' ? "selected" : ""}} value="SUMMARIZE">SUMMARIZE</option>--}}
+{{--                                                                    <option {{$default_then == 'Custom PROMPT' ? "selected" : ""}} value="Custom PROMPT">Custom PROMPT</option>--}}
+{{--                                                                </select>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                        @if($default_then == "Custom PROMPT")--}}
+{{--                                                            <div class=" flex p-2">--}}
+{{--                                                                <input type="text" wire:model.defer="default_custom_prompt"  class="f_select p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" />--}}
+{{--                                                            </div>--}}
+{{--                                                        @endif--}}
+{{--                                                    </div>--}}
+{{--                                                    @if($default_email_settings)--}}
+{{--                                                        @for($i = 0;$i < count($default_email_settings);$i++)--}}
 
-                                                            <div class="space-y-2">
+{{--                                                            <div class="space-y-2">--}}
 
-                                                                <div class="filament-forms-text-input-component flex items-center space-x-2 rtl:space-x-reverse group">
+{{--                                                                <div class="filament-forms-text-input-component flex items-center space-x-2 rtl:space-x-reverse group">--}}
 
-                                                                    <div class=" flex p-2 min-width-92">
-                                                                        {{$i >= 1 ? "also send" : "and send"}}
-                                                                    </div>
-                                                                    <div class=" flex p-2">
-                                                                        @if(isset($default_email_settings[$i]['from']) &&$default_email_settings[$i]['from'] == "c")
-                                                                            <input type="text"  wire:model.defer="default_email_settings.{{$i}}.custom_subject" class="min-width-266 f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" />
-                                                                        @else
-                                                                            <select type="text"  wire:change="changeForm({{$i}})" wire:model="default_email_settings.{{$i}}.from" class="f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >
-                                                                                <option name="" id="">Select</option>
-                                                                                @foreach(defultForm($default_then) as $k => $form)
-                                                                                    <option value="{{$k}}" >{{$form}}</option>
-                                                                                @endforeach
+{{--                                                                    <div class=" flex p-2 min-width-92">--}}
+{{--                                                                        {{$i >= 1 ? "also send" : "and send"}}--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class=" flex p-2">--}}
+{{--                                                                        @if(isset($default_email_settings[$i]['from']) &&$default_email_settings[$i]['from'] == "c")--}}
+{{--                                                                            <input type="text"  wire:model.defer="default_email_settings.{{$i}}.custom_subject" class="min-width-266 f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" />--}}
+{{--                                                                        @else--}}
+{{--                                                                            <select type="text"  wire:change="changeForm({{$i}})" wire:model="default_email_settings.{{$i}}.from" class="f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >--}}
+{{--                                                                                <option name="" id="">Select</option>--}}
+{{--                                                                                @foreach(defultForm($default_then) as $k => $form)--}}
+{{--                                                                                    <option value="{{$k}}" >{{$form}}</option>--}}
+{{--                                                                                @endforeach--}}
 
-                                                                            </select>
+{{--                                                                            </select>--}}
 
-                                                                        @endif
+{{--                                                                        @endif--}}
 
-                                                                    </div>
-                                                                    <div class=" flex p-2">
-                                                                        to
-                                                                    </div>
-
-
-                                                                    @if(isset($default_email_settings[$i]['to']) && $default_email_settings[$i]['to'] == 'j')
-                                                                        <div class=" flex p-2">
-                                                                            <input type="text"  wire:model.defer="default_email_settings.{{$i}}.custom_email" class="f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" />
-                                                                        </div>
-                                                                    @else
-                                                                        <div class=" flex p-2">
-                                                                            <select type="text"  wire:model="default_email_settings.{{$i}}.to" class="f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >
-                                                                                <option name="" id="">Select</option>
-                                                                                @foreach(defaultTo(isset($default_email_settings[$i]['from']) ? $default_email_settings[$i]['from'] : "xcs",\Illuminate\Support\Facades\Auth::id()) as $b => $to)
-                                                                                    <option value="{{$b}}">{{$to}}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                    @endif
-
-                                                                    <div class=" flex p-2">
-                                                                        <select type="text"  wire:model.defer="default_email_settings.{{$i}}.include" class="f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >
-                                                                            <option name="" id="">Select</option>
-                                                                            @foreach(defaultWith(isset($default_email_settings[$i]['to']) ? $default_email_settings[$i]['to'] : "xcs",\Illuminate\Support\Facades\Auth::id()) as $k => $include)
-                                                                                <option value="{{$k}}">{{$include}}</option>
-                                                                            @endforeach
-
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class=" flex p-2">
-                                                                        @if($i >= 1)
-                                                                            <a wire:click="delete({{$i}})" href="javascript:">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                                                </svg>
-                                                                            </a>
-                                                                        @endif
-
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-                                                        @endfor
-                                                    @endif
+{{--                                                                    </div>--}}
+{{--                                                                    <div class=" flex p-2">--}}
+{{--                                                                        to--}}
+{{--                                                                    </div>--}}
 
 
+{{--                                                                    @if(isset($default_email_settings[$i]['to']) && $default_email_settings[$i]['to'] == 'j')--}}
+{{--                                                                        <div class=" flex p-2">--}}
+{{--                                                                            <input type="text"  wire:model.defer="default_email_settings.{{$i}}.custom_email" class="f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" />--}}
+{{--                                                                        </div>--}}
+{{--                                                                    @else--}}
+{{--                                                                        <div class=" flex p-2">--}}
+{{--                                                                            <select type="text"  wire:model="default_email_settings.{{$i}}.to" class="f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >--}}
+{{--                                                                                <option name="" id="">Select</option>--}}
+{{--                                                                                @foreach(defaultTo(isset($default_email_settings[$i]['from']) ? $default_email_settings[$i]['from'] : "xcs",\Illuminate\Support\Facades\Auth::id()) as $b => $to)--}}
+{{--                                                                                    <option value="{{$b}}">{{$to}}</option>--}}
+{{--                                                                                @endforeach--}}
+{{--                                                                            </select>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    @endif--}}
+
+{{--                                                                    <div class=" flex p-2">--}}
+{{--                                                                        <select type="text"  wire:model.defer="default_email_settings.{{$i}}.include" class="f_select2 p-2 m-2 filament-forms-input block w-full transition duration-75 rounded-lg shadow-sm outline-none focus:ring-1 focus:ring-inset disabled:opacity-70 dark:bg-gray-700 dark:text-white border-gray-300 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500" >--}}
+{{--                                                                            <option name="" id="">Select</option>--}}
+{{--                                                                            @foreach(defaultWith(isset($default_email_settings[$i]['to']) ? $default_email_settings[$i]['to'] : "xcs",\Illuminate\Support\Facades\Auth::id()) as $k => $include)--}}
+{{--                                                                                <option value="{{$k}}">{{$include}}</option>--}}
+{{--                                                                            @endforeach--}}
+
+{{--                                                                        </select>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class=" flex p-2">--}}
+{{--                                                                        @if($i >= 1)--}}
+{{--                                                                            <a wire:click="delete({{$i}})" href="javascript:">--}}
+{{--                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">--}}
+{{--                                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />--}}
+{{--                                                                                </svg>--}}
+{{--                                                                            </a>--}}
+{{--                                                                        @endif--}}
+
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+
+{{--                                                            </div>--}}
+
+{{--                                                        @endfor--}}
+{{--                                                    @endif--}}
 
 
 
-                                                </div>
-                                            </div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="p-1 w-full mx-auto">
-                            <div class="grid grid-cols-1   lg:grid-cols-4   filament-forms-component-container gap-6">
-                                <div class="col-span-full">
-                                    <div>
-                                        <div class="grid grid-cols-1   lg:grid-cols-1   filament-forms-component-container">
-                                            <div class="col-span-1 flex justify-space-between p-2">
-                                                <button class="mb-10 text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action" href="javascript:"
-                                                        wire:click="addNew"
-                                                        wire:loading.attr="disabled"
-                                                >{{__('Also send')}}</button>
-                                                <button class="mb-10 text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action" wire:click="submitDefault">Save</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="p-1 w-full mx-auto">--}}
+{{--                            <div class="grid grid-cols-1   lg:grid-cols-4   filament-forms-component-container gap-6">--}}
+{{--                                <div class="col-span-full">--}}
+{{--                                    <div>--}}
+{{--                                        <div class="grid grid-cols-1   lg:grid-cols-1   filament-forms-component-container">--}}
+{{--                                            <div class="col-span-1 flex justify-space-between p-2">--}}
+{{--                                                <button class="mb-10 text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action" href="javascript:"--}}
+{{--                                                        wire:click="addNew"--}}
+{{--                                                        wire:loading.attr="disabled"--}}
+{{--                                                >{{__('Also send')}}</button>--}}
+{{--                                                <button class="mb-10 text-right filament-button filament-button-size-md inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action" wire:click="submitDefault">Save</button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
 
             <div>
